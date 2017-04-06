@@ -13,6 +13,8 @@ void setup() {
 // the loop routine runs over and over again forever:
 void loop() {
     //play buzzer @ 'volume'
+    //uncomment the line below for a random volume
+    //volume = random(0,255);
     analogWrite (speakerPin, volume); 
     //pause for 50 miliseconds 
     delay (50);

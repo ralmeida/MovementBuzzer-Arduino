@@ -31,7 +31,7 @@ bool didMove = false;
  *  - false then buzz when not moving
  *  - true then buzz when moving
  */
-bool toggle = true;
+bool toggle = false;
 
 //--END NEW CODE--//
 
@@ -69,8 +69,6 @@ void loop() {
     delay (50);
     //stop the tone
     analogWrite (speakerPin, 0);
-    //pause for 10 miliseconds 
-    delay (10);
   }
 
   //read sensor x,y,z
@@ -79,10 +77,10 @@ void loop() {
   int newZ = analogRead(zPin); // read analog input zPin
 
   
-  if(newX != 1) {
-  Serial.write(newX);
-  Serial.write(newY);
-  }
+  //if(newX != 1) {
+  Serial.println(newX);
+  Serial.println(newY);
+  //}
   
   //hold our difference form what we just read to our last
   int xDiff = newX-x;
@@ -94,8 +92,7 @@ void loop() {
 
   //check for differences allowing for a +/-1 variance
   if(xDiff != 0 || yDiff != 0 || zDiff != 0) {
-    
-    /* REMOVE FOR SIM ONLY
+  
     if(xDiff > 1 || xDiff < -1) {
       //Serial.print("xDiff");
       didItMove = true;
@@ -108,10 +105,9 @@ void loop() {
       //Serial.print("zDiff");
       didItMove = true;
     }
-    */
-    
+        
     /*REMOVE THIS IF NOT USING SIM*/
-    didItMove=true;
+    //didItMove=true;
   }
 
   //Set our current vals to the readings
@@ -120,5 +116,5 @@ void loop() {
   //Set if we moded or not
   didMove = didItMove;
   
-  delay(100); 
+  delay(75); 
 }
